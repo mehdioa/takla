@@ -1,0 +1,21 @@
+[Desktop Entry]
+Categories=Education;Qt;
+Comment[en_US]=
+Comment=
+Exec=kla %F
+GenericName[en_US]=Keyboard Layout Analyzer
+GenericName=Keyboard Layout Analyzer
+Icon=/mnt/Personal/Projects/QTProjects/kla/kla/Images/kla.png
+MimeType=
+Name[en_US]=kla
+Name=kla
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+Version=0.6
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=

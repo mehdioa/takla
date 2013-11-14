@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>percentageWindow</class>
+ <widget class="QWidget" name="percentageWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>346</width>
+    <height>522</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabs">
+     <property name="currentIndex">
+      <number>2</number>
+     </property>
+     <widget class="QWidget" name="charactersTab">
+      <attribute name="title">
+       <string>Characters</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QTableView" name="charTableView"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="bigramsTab">
+      <attribute name="title">
+       <string>Bigrams</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QTableView" name="bigramsTableView"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="baseBigramsTab">
+      <attribute name="title">
+       <string>Base Bigrams</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QRadioButton" name="oderedRadioButton">
+           <property name="text">
+            <string>Ordered</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="unorderedRadioButton">
+           <property name="text">
+            <string>Unordered</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QComboBox" name="baseBigramsComboBox"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="baseBigramsShowPushButton">
+           <property name="text">
+            <string>Show</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTableView" name="baseBigramsTableView"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="trigramsTab">
+      <attribute name="title">
+       <string>Trigrams</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QPushButton" name="trigramsShowPushButton">
+         <property name="text">
+          <string>Show (Takes a while to complete)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableView" name="trigramsTableView"/>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CompareDialog</class>
+ <widget class="QDialog" name="CompareDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>794</width>
+    <height>532</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="Tabs">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="fingerHitsTab">
+      <attribute name="title">
+       <string>Finger Hits</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_1">
+       <item>
+        <widget class="QTableView" name="fingerHitsTableView"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="fingerDistanceTab">
+      <attribute name="title">
+       <string>Finger Distances</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QTableView" name="fingerDistanceTableView"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="outwardRollingTab">
+      <attribute name="title">
+       <string>Outward Rolling</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QTableView" name="outwardRollingTableView"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="inwardRollingTab">
+      <attribute name="title">
+       <string>Inward Rolling</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QTableView" name="inwardRollingTableView"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="sameFingerTab">
+      <attribute name="title">
+       <string>Same Finger</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QTableView" name="sameFingerTableView"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="rowJumpsTab">
+      <attribute name="title">
+       <string>Row Jumps</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QTableView" name="rowJumpTableView"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="handSymmetryTab">
+      <attribute name="title">
+       <string>Hand Symmetry</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <item>
+        <widget class="QTableView" name="handSymmetryTableView"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="sameHandTab">
+      <attribute name="title">
+       <string>Same Hand</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_8">
+       <item>
+        <widget class="QTableView" name="sameHandTableView"/>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
