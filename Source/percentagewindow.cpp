@@ -43,22 +43,20 @@ void percentageWindow::setTotalCharacters()
 void percentageWindow::setTotalBigrams()
 {
 	totalBigrams= 0;
-	auto Bigramstrings = new QStringList;
-	Bigramstrings = subStrings(characterSet, 2);
+	subStrings(&Bigramstrings, characterSet, 2);
 	for (int i = 0; i < alphabetSize*alphabetSize; ++i)
 	{
-		totalBigrams += textEdit.count((QString) Bigramstrings->at(i), Qt::CaseInsensitive);
+		totalBigrams += textEdit.count((QString) Bigramstrings.at(i), Qt::CaseInsensitive);
 	}
 }
 
 void percentageWindow::setTotalTrigrams()
 {
 	totalTrigrams= 0;
-	auto trigramstrings = new QStringList;
-	trigramstrings = subStrings(characterSet, 3);
+	subStrings(&Trigramstrings, characterSet, 3);
 	for (int i = 0; i < alphabetSize*alphabetSize*alphabetSize; ++i)
 	{
-		totalTrigrams += textEdit.count((QString) trigramstrings->at(i), Qt::CaseInsensitive);
+		totalTrigrams += textEdit.count((QString) Trigramstrings.at(i), Qt::CaseInsensitive);
 	}
 
 }
@@ -81,13 +79,12 @@ void percentageWindow::setModels()
 	auto bigramModel = new QStandardItemModel(bigramNumber,2,this);
 	bigramModel->setHeaderData(0, Qt::Horizontal, tr("Bigram"));
 	bigramModel->setHeaderData(1, Qt::Horizontal, tr("Percentage"));
-	auto Bigramstrings = new QStringList;
-	Bigramstrings = subStrings(characterSet, 2);
+	subStrings(&Trigramstrings, characterSet, 2);
 	for (int row =0; row < bigramNumber; ++row)
 	{
-		bigramModel->setData(bigramModel->index(row, 0, QModelIndex()), (QString)Bigramstrings->at(row));
+		bigramModel->setData(bigramModel->index(row, 0, QModelIndex()), (QString)Bigramstrings.at(row));
 		bigramModel->setData(bigramModel->index(row, 1, QModelIndex()),
-                              (double) textEdit.count((QString)Bigramstrings->at(row))/textEdit.length()*100);
+							  (double) textEdit.count((QString)Bigramstrings.at(row))/textEdit.length()*100);
 	}
 
 
@@ -136,27 +133,25 @@ void percentageWindow::showTrigrams()
 	auto trigramModel = new QStandardItemModel(trigramNumber,2,this);
 	trigramModel->setHeaderData(0, Qt::Horizontal, tr("Trigram"));
 	trigramModel->setHeaderData(1, Qt::Horizontal, tr("Percentage"));
-	auto trigramstrings = new QStringList;
-	trigramstrings = subStrings(characterSet, 3);
+	subStrings(&Trigramstrings, characterSet, 3);
 	for (int row =0; row < trigramNumber; ++row)
 	{
-		trigramModel->setData(trigramModel->index(row, 0, QModelIndex()), (QString)trigramstrings->at(row));
+		trigramModel->setData(trigramModel->index(row, 0, QModelIndex()), (QString)Trigramstrings.at(row));
 		trigramModel->setData(trigramModel->index(row, 1, QModelIndex()),
-                               (double) textEdit.count((QString)trigramstrings->at(row))/textEdit.length()*100);
+							   (double) textEdit.count((QString)Trigramstrings.at(row))/textEdit.length()*100);
 	}
 	trigramModel->sort(1, Qt::DescendingOrder);
 	ui->trigramsTableView->setModel(trigramModel);
 }
 
-QStringList *percentageWindow::subStrings(QString str, int subStrNumber)
+void percentageWindow::subStrings(QStringList *string_list, QString str, int subStrNumber)
 {
 	int baseNumber = str.length();
 	int totalNumber = str.length();
-	for (int pow = 1; pow < subStrNumber; ++pow)
-	{
+	for (int pow = 1; pow < subStrNumber; ++pow) {
 		totalNumber *= baseNumber;
 	}
-	auto answer = new QStringList;
+	string_list->clear();
 	QString subStr;
 	int tempNumber;
 	for (int i = 0; i < totalNumber; ++i)
@@ -168,7 +163,6 @@ QStringList *percentageWindow::subStrings(QString str, int subStrNumber)
 			subStr.append(str[tempNumber%baseNumber]);
 			tempNumber /= baseNumber;
 		}
-		answer->append(subStr);
+		string_list->append(subStr);
 	}
-	return answer;
 }

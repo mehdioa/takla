@@ -5,6 +5,7 @@
 #include <QDialog>
 #include <QList>
 
+class KeyboardConstants;
 
 namespace Ui {
 class CompareDialog;
@@ -15,13 +16,13 @@ class CompareDialog : public QDialog
 	Q_OBJECT
 	
 public:
-	explicit CompareDialog(QTextEdit *text, QStringList *layoutsListPointer, bool isStandard,
-						   bool isANSI,  QWidget *parent = 0);
+	explicit CompareDialog(QTextEdit *text, QStringList *layoutsListPointer, KeyboardConstants k_c,  QWidget *parent = 0);
 	~CompareDialog();
 	
 private:
 	Ui::CompareDialog *ui;
 	QTextEdit *textEdit;
+	KeyboardConstants kc;
 
 	QList<Keyboard> keyboardList;
 	void evaluate (QString str);

@@ -7,21 +7,10 @@
 #include <QMessageBox>
 #include <cmath>
 
-Keyboard::Keyboard(QString layoutFileName, bool isStandard, bool isANSI)
+Keyboard::Keyboard(QString layoutFileName, KeyboardConstants *k_c):
+	kc(k_c)
 {
-	if (!isStandard)
-	{
-		rightShiftDistance = 0.027;
-		leftShiftDistance = 0.027;
-		horizontalShift[-1] = 0.0;
-		horizontalShift[0] = 0.0;
-		horizontalShift[1] = 0.0;
-		horizontalShift[2] = -0.005;
-	}
-	if (!isANSI)
-	{
-		leftShiftDistance = 0.038;
-	}
+
 	QFile file(layoutFileName);
 	if (!file.open(QFile::ReadOnly |  QFile::Text))
 	{
@@ -59,7 +48,7 @@ double Keyboard::getDistanceToHome(const int row, const int parallelMove)
 {
 	double x, y = row*0.019;
 
-	x = parallelMove*0.019 + horizontalShift[row + 1];
+	x = parallelMove*0.019 +kc->horizontalShift[row + 1];
 
 	return sqrt(x*x + y*y);
 }
@@ -193,8 +182,8 @@ double Keyboard::goToKey(const Key *fromKey, const Key *toKey)
 	y1 = fromKey->row*0.019;
 	y2 = toKey->row*0.019;
 
-	x1 = fromKey->parallelMove*0.019 + horizontalShift[fromKey->row + 1];
-	x2 = toKey->parallelMove*0.019 + horizontalShift[toKey->row + 1];
+	x1 = fromKey->parallelMove*0.019 + kc->horizontalShift[fromKey->row + 1];
+	x2 = toKey->parallelMove*0.019 + kc->horizontalShift[toKey->row + 1];
 
 	return sqrt(pow(x2-x1,2)+pow(y2-y1,2));
 }
@@ -204,12 +193,12 @@ void Keyboard::addShiftSpace(const Key *key)
 {
 	if (key->finger < 4)
 	{
-		distances[9] += rightShiftDistance;
+		distances[9] += kc->rightShiftDistance;
 		++hits[9];
 	}
 	else if (key->finger > 5)
 	{
-		distances[0] += leftShiftDistance;
+		distances[0] += kc->leftShiftDistance;
 		++hits[0];
 	}
 }

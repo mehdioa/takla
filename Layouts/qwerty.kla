@@ -1,5 +1,5 @@
 US(QWERTY)
-a b c d e f g h i j k l m n o p q r s t u v w x y z , . ; : ?
+a b c d e f g h i j k l m n o p q r s t u v w x y z , . ; ' [ ] : " ?
 q w e r t y u i o p [ ] a s d f g h j k l ; ' \ z x c v b n m , . / Q W E R T Y U I O P { } A S D F G H J K L : " | Z X C V B N M < > ?
 Row 	Finger 	Move Shift
 1	0	0	0
@@ -12,6 +12,8 @@ Row 	Finger 	Move Shift
 1	7	0	0
 1	8	0	0
 1	9	0	0
+1	9	1	0
+1	9	2	0
 0	0	0	0
 0	1	0	0
 0	2	0	0
@@ -22,6 +24,8 @@ Row 	Finger 	Move Shift
 0	7	0	0
 0	8	0	0
 0	9	0	0
+0	9	1	0
+0	9	2	0
 -1	0	0	0
 -1	1	0	0
 -1	2	0	0
@@ -42,6 +46,8 @@ Row 	Finger 	Move Shift
 1	7	0	1
 1	8	0	1
 1	9	0	1
+1	9	1	1
+1	9	2	1
 0	0	0	1
 0	1	0	1
 0	2	0	1
@@ -52,6 +58,8 @@ Row 	Finger 	Move Shift
 0	7	0	1
 0	8	0	1
 0	9	0	1
+0	9	1	1
+0	9	2	1
 -1	0	0	1
 -1	1	0	1
 -1	2	0	1

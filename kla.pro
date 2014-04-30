@@ -18,13 +18,15 @@ SOURCES += Source/main.cpp \
         Source/mainwindow.cpp \
         Source/percentagewindow.cpp \
     Source/comparedialog.cpp \
-    Source/keyboard.cpp
+    Source/keyboard.cpp \
+    Source/keyboardconstants.cpp
 
 
 HEADERS  += Source/mainwindow.h \
         Source/percentagewindow.h \
     Source/comparedialog.h \
-    Source/keyboard.h
+    Source/keyboard.h \
+    Source/keyboardconstants.h
 
 
 FORMS    += Source/mainwindow.ui \

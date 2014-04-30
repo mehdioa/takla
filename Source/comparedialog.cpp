@@ -5,15 +5,16 @@
 #include <QListWidget>
 #include <QStandardItemModel>
 
-CompareDialog::CompareDialog(QTextEdit *text, QStringList *layoutsListPointer, bool isStandard, bool isANSI, QWidget *parent):
+CompareDialog::CompareDialog(QTextEdit *text, QStringList *layoutsListPointer, KeyboardConstants k_c, QWidget *parent):
 	QDialog(parent),
-	ui(new Ui::CompareDialog), textEdit(text)
+	ui(new Ui::CompareDialog), textEdit(text),
+	kc(k_c)
 {
 	ui->setupUi(this);
 
 	for (int i = 0; i < layoutsListPointer->size(); ++i )
 	{
-		Keyboard kb(layoutsListPointer->at(i), isStandard, isANSI);
+		Keyboard kb(layoutsListPointer->at(i), &kc);
 		kb.procesText(text);
 		keyboardList.append(kb);
 	}

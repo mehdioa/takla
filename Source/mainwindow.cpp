@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "percentagewindow.h"
 #include "comparedialog.h"
+#include "keyboardconstants.h"
 #include <QMainWindow>
 #include <QSettings>
 #include <QtEvents>
@@ -83,7 +84,7 @@ void MainWindow::addLayout()
 	}
 
 	QTextStream in(&file);
-	auto newItem = new QListWidgetItem;
+	auto newItem = new QListWidgetItem(ui->layoutsListWidget);
 	newItem->setText(in.readLine());
 	file.close();
 	newItem->setWhatsThis(fileName);
@@ -177,8 +178,9 @@ void MainWindow::compareLayouts()
 	{
 		layoutList.append(ui->layoutsListWidget->item(i)->whatsThis());
 	}
-	auto cw = new CompareDialog(ui->textEdit, &layoutList, ui->standardRadioButton->isEnabled(),
-								ui->AnsiRadioButton->isEnabled(), this);
+
+	KeyboardConstants kc( (KeyboardType) ui->standardRadioButton->isEnabled(), (KeyboardShape) ui->AnsiRadioButton->isEnabled());
+	auto cw = new CompareDialog(ui->textEdit, &layoutList, kc, this);
 	cw->setWindowTitle("Compares");
 	cw->show();
 	statusBar()->showMessage(tr("Layout compared"), 2000);

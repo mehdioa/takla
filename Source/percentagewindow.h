@@ -2,6 +2,7 @@
 #define PERCENTAGEWINDOW_H
 
 #include <QDialog>
+#include <QStringList>
 class QTextEdit;
 
 namespace Ui {
@@ -28,12 +29,14 @@ private:
 	int totalBigrams;
 	int totalTrigrams;
 	int alphabetSize;
+	QStringList Bigramstrings;
+	QStringList Trigramstrings;
 
 	void setTotalCharacters();
 	void setTotalBigrams();
 	void setTotalTrigrams();
 	void setModels();
-	QStringList *subStrings(QString str, int subStrNumber);
+	void subStrings(QStringList *string_list, QString str, int subStrNumber);
 
 
 };
