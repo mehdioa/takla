@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <cmath>
 
+
 Keyboard::Keyboard(QString layoutFileName, KeyboardConstants *k_c):
 	kc(k_c)
 {
@@ -25,21 +26,49 @@ Keyboard::Keyboard(QString layoutFileName, KeyboardConstants *k_c):
 
 	name = in.readLine();
 	in.readLine();//Read of the short alphabet
-	alphabet = in.readLine().remove(' ');//Read the complete alphabet
-	alphabet.append(' ');//Appending space
-	alphabet.append(QChar(0x000d));//Appending Return
-	in.readLine();//Read of comment
-	Key readingKey;
-	foreach (QChar ch, alphabet) //Please double check here that the input file has enough entries
-	{
-		readingKey.character = ch;
-		in >> readingKey.row;
-		in >> readingKey.finger;
-		in >> readingKey.parallelMove;
-		in >> readingKey.needsShift;
-		readingKey.distanceToHome = getDistanceToHome(readingKey.row, readingKey.parallelMove);
-		keyboard.append(readingKey);
+	in.readLine();//Read of the qwerty helper
+
+	alphabet = "";
+	QString normal_characters = in.readLine();
+	QString shifted_characters = in.readLine();
+	Key reading_key;
+	for(int i=0; i < kc->LayouSize; i++){
+		reading_key.row = kc->KeySpec[i][0];
+		reading_key.finger = kc->KeySpec[i][1];
+		reading_key.parallelMove = kc->KeySpec[i][2];
+		reading_key.distanceToHome = getDistanceToHome(reading_key.row, reading_key.parallelMove);
+
+		reading_key.character = normal_characters[i];
+		alphabet.append(reading_key.character);
+
+		reading_key.needsShift = 0;
+		keyboard.append(reading_key);
+
+		reading_key.character = shifted_characters[i];
+		alphabet.append(reading_key.character);
+		reading_key.needsShift = 1;
+		keyboard.append(reading_key);
 	}
+
+	reading_key.row = 0;
+	reading_key.finger = 5;
+	reading_key.parallelMove = 0;
+	reading_key.needsShift = 0;
+	reading_key.distanceToHome = getDistanceToHome(reading_key.row, reading_key.parallelMove);
+	reading_key.character = ' ';//adding space
+	keyboard.append(reading_key);
+	alphabet.append(reading_key.character);
+
+	reading_key.finger = 9;
+	if(kc->_type == KeyboardType::ISO){
+		reading_key.parallelMove = 3;
+	} else {
+		reading_key.parallelMove = 2;
+	}
+	reading_key.distanceToHome = getDistanceToHome(reading_key.row, reading_key.parallelMove);
+	reading_key.character = QChar(0x000d);
+	keyboard.append(reading_key);
+	alphabet.append(reading_key.character);
 }
 
 

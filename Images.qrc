@@ -1,10 +1,10 @@
 <RCC>
     <qresource prefix="/images">
-        <file>Images/kla.png</file>
         <file>Images/document-new.png</file>
         <file>Images/system-log-out.png</file>
         <file>Images/symbol_help.png</file>
         <file>Images/symbol_information.png</file>
         <file>Images/symbol_restricted.png</file>
+        <file>Images/tkla.png</file>
     </qresource>
 </RCC>

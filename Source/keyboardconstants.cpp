@@ -4,10 +4,14 @@ KeyboardConstants::KeyboardConstants(const KeyboardType &kt, const KeyboardShape
 	_type(kt),
 	_shape(ks)
 {
-	if (_type != KeyboardType::ANSI) {
+	if (_type == KeyboardType::ISO) {
 		leftShiftDistance = 0.038;
+		KeySpec = ISOspec;
+		LayouSize = 48;
 	} else {
 		leftShiftDistance = 0.021;
+		KeySpec = ANSIspec;
+		LayouSize = 47;
 	}
 
 	if (_shape == KeyboardShape::STANDARD) {

@@ -47,7 +47,7 @@ void MainWindow::createStatusBar()
 
 void MainWindow::readSettings()
 {
-	QSettings settings("QtProject", "Keyboard Layout Designer");
+	QSettings settings("QtProject", "Text And Keyboard Layout Analyzer");
 	QPoint pos = settings.value("pos", QPoint(200, 200)).toPoint();
 	QSize size = settings.value("size", QSize(400, 400)).toSize();
 	resize(size);
@@ -56,7 +56,7 @@ void MainWindow::readSettings()
 
 void MainWindow::writeSettings()
 {
-	QSettings settings("QtProject", "Keyboard Layout Designer");
+	QSettings settings("QtProject", "Text And Keyboard Layout Analyzer");
 	settings.setValue("pos", pos());
 	settings.setValue("size", size());
 }
@@ -75,7 +75,7 @@ void MainWindow::addLayout()
 	QFile file(fileName);
 	if (!file.open(QFile::ReadOnly | QFile::Text))
 	{
-		QMessageBox::warning(this, tr("Keyboar Layout Analyzer"),
+		QMessageBox::warning(this, tr("Text And Keyboard Layout Analyzer"),
 							 tr("Cannot read file %1:\n%2.")
 							 .arg(fileName)
 							 .arg(file.errorString()));
@@ -105,7 +105,7 @@ void MainWindow::loadText()
 	QFile file(fileName);
 	if (!file.open(QFile::ReadOnly |  QFile::Text))
 	{
-		QMessageBox::warning(this, tr("Keyboar Layout Analyzer"),
+		QMessageBox::warning(this, tr("Text And Keyboard Layout Analyzer"),
 							 tr("Cannot read file %1:\n%2.")
 							 .arg(fileName)
 							 .arg(file.errorString()));
@@ -141,7 +141,7 @@ void MainWindow::analyzeText()
 	QTextStream in(&file);
 	if (!file.open(QFile::ReadOnly | QFile::Text))
 	{
-		QMessageBox::warning(this, tr("Keyboar Layout Analyzer"),
+		QMessageBox::warning(this, tr("Text And Keyboard Layout Analyzer"),
 							 tr("Cannot read file %1:\n%2.")
 							 .arg(ui->layoutsListWidget->item(0)->whatsThis())
 							 .arg(file.errorString()));
@@ -190,6 +190,6 @@ void MainWindow::compareLayouts()
 void MainWindow::about()
 {
 	QMessageBox::about(this, tr("About KLA"),
-			 tr("<b>Keyboard Layout Analyzer<b> Based on Qt 4.8.4"));
+			 tr("<b>Text And Keyboard Layout Analyzer<b> Based on Qt 4.8.4"));
 }
 
