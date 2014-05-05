@@ -1,11 +1,12 @@
+#!/usr/bin/env xdg-open
 [Desktop Entry]
 Categories=Education;Qt;
 Comment[en_US]=
 Comment=
-Exec=kla %F
+Exec=tkla %F
 GenericName[en_US]=Text And Keyboard Layout Analyzer
-GenericName=Keyboard Layout Analyzer
-Icon=/mnt/Personal/Projects/QTProjects/tkla/tkla/Images/tkla512.png
+GenericName=Text And Keyboard Layout Analyzer
+Icon=/mnt/Personal/Projects/QTProjects/tkla/tkla/Images/tkla.png
 MimeType=
 Name[en_US]=tkla
 Name=tkla
