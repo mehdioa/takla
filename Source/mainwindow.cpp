@@ -71,6 +71,7 @@ void MainWindow::addLayout()
 	QString fileName = QFileDialog::getOpenFileName(this,
 													tr("Open Keyboard"),
 													tr("Keyboard Files (*.klt)"));
+	if(fileName.length() == 0) return;
 	QFile file(fileName);
 	if (!file.open(QFile::ReadOnly | QFile::Text))
 	{
@@ -101,6 +102,7 @@ void MainWindow::removeLayout()
 void MainWindow::loadText()
 {
 	QString fileName = QFileDialog::getOpenFileName(this);
+	if(fileName.length() == 0) return;
 	QFile file(fileName);
 	if (!file.open(QFile::ReadOnly |  QFile::Text))
 	{
