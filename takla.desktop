@@ -3,13 +3,13 @@
 Categories=Education;Qt;
 Comment[en_US]=
 Comment=
-Exec=tkla %F
+Exec=takla %F
 GenericName[en_US]=Text And Keyboard Layout Analyzer
 GenericName=Text And Keyboard Layout Analyzer
-Icon=/mnt/Personal/Projects/QTProjects/tkla/tkla/Images/tkla.png
+Icon=/mnt/Personal/Projects/QTProjects/takla/takla/Images/takla.png
 MimeType=
-Name[en_US]=TKLA
-Name=TKLA
+Name[en_US]=TAKLA
+Name=TAKLA
 Path=
 StartupNotify=true
 Terminal=false
