@@ -29,8 +29,8 @@ Keyboard::Keyboard(QString layoutFileName, KeyboardConstants *k_c):
 	in.readLine();//Read of the qwerty helper
 
 	alphabet = "";
-	QString normal_characters = in.readLine();
-	QString shifted_characters = in.readLine();
+	QString normal_characters = in.readLine().remove(' ');
+	QString shifted_characters = in.readLine().remove(' ');
 	Key reading_key;
 	for(int i=0; i < kc->LayouSize; i++){
 		reading_key.row = kc->KeySpec[i][0];
