@@ -70,7 +70,7 @@ void MainWindow::addLayout()
 {
 	QString fileName = QFileDialog::getOpenFileName(this,
 													tr("Open Keyboard"),
-													tr("Keyboard Files (*.kla)"));
+													tr("Keyboard Files (*.klt)"));
 	QFile file(fileName);
 	if (!file.open(QFile::ReadOnly | QFile::Text))
 	{
