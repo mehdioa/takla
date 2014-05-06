@@ -37,23 +37,15 @@ tar xf takla.xz
 
 rm .INSTALL .MTREE .PKGINFO takla.xz
 
-fpm -s dir -t deb -a "amd64" -n "takla" --category 'Qt,Education' 
---deb-field  'Depends: libqtgui4' --description 'Text And Keyboard Layout 
-Analyzer' --deb-field 'Provides:ktla' --url  
-'http://github.com/omidnikta/takla' --license GPL2 --vendor '' -v $1 -m 'Omid 
-Nikta' usr
+fpm -s dir -t deb -a "amd64" -n "takla" --category 'Qt,Education' --deb-field  'Depends: libqtgui4' --description 'Text And Keyboard Layout Analyzer' --deb-field 'Provides:ktla' --url  'http://github.com/omidnikta/takla' --license GPL2 --vendor '' -v $1 -m 'Omid Nikta' usr
 
 mv -f takla*_amd64.deb ../../gh-pages/Downloads/takla_amd64.deb
 
-fpm -s dir -t rpm -n "takla" --category 'Qt,Education' --description 'Text And 
-Keyboard Layout Analyzer'  --url 'http://github.com/omidnikta/takla' --license 
-GPL2 --vendor '' -v $1 -m 'Omid Nikta' -d 'libqt4' usr
+fpm -s dir -t rpm -n "takla" --category 'Qt,Education' --description 'Text And Keyboard Layout Analyzer'  --url 'http://github.com/omidnikta/takla' --license GPL2 --vendor '' -v $1 -m 'Omid Nikta' -d 'libqt4' usr
 
 mv -f takla-*.x86_64.rpm ../../gh-pages/Downloads/takla_suse.x86_64.rpm
 
-fpm -s dir -t rpm -n "takla" --category 'Qt,Education' --description 'Text And 
-Keyboard Layout Analyzer'  --url 'http://github.com/omidnikta/takla' --license 
-GPL2 --vendor '' -v $1 -m 'Omid Nikta' -d 'qt-x11' usr
+fpm -s dir -t rpm -n "takla" --category 'Qt,Education' --description 'Text And Keyboard Layout Analyzer'  --url 'http://github.com/omidnikta/takla' --license GPL2 --vendor '' -v $1 -m 'Omid Nikta' -d 'qt-x11' usr
 
 mv -f takla-*.x86_64.rpm ../../gh-pages/Downloads/takla_fedora.x86_64.rpm
 cd ..

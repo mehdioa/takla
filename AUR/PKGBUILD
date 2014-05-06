@@ -47,7 +47,7 @@ package() {
   cp -r Layouts/ ${pkgdir}/usr/share/doc/${pkgname}/
 
   # icon
-  install -D -m644 Images/takla512.png \
+  install -D -m644 Images/takla.png \
     ${pkgdir}/usr/share/pixmaps/takla.png
 
   # desktop
