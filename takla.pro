@@ -48,12 +48,12 @@ unix:!macx { # installation on Unix-ish platforms
 	isEmpty(DATA_DIR):DATA_DIR = $$INSTALL_PREFIX/share
 	isEmpty(ICON_DIR):ICON_DIR = $$DATA_DIR/pixmaps
 	isEmpty(DESKTOP_DIR):DESKTOP_DIR = $$DATA_DIR/applications
-#	isEmpty(TRANSLATIONS_DIR):TRANSLATIONS_DIR = $$DATA_DIR/tkla/translations
+#	isEmpty(TRANSLATIONS_DIR):TRANSLATIONS_DIR = $$DATA_DIR/takla/translations
 
 	target.path = $$BIN_DIR
-	icon.files = Images/tkla.png
+	icon.files = Images/takla.png
 	icon.path = $$ICON_DIR
-	desktop.files = tkla.desktop
+	desktop.files = takla.desktop
 	desktop.path = $$DESKTOP_DIR
 #	qm.files = translations/*.qm
 #	qm.path = $$TRANSLATIONS_DIR

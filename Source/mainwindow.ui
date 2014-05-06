@@ -203,73 +203,10 @@
      <height>23</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuLayout">
-    <property name="title">
-     <string>Layout</string>
-    </property>
-    <addaction name="actionCreate"/>
-    <addaction name="separator"/>
-    <addaction name="actionQuit"/>
-   </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
-    <addaction name="separator"/>
-    <addaction name="actionManual"/>
-    <addaction name="separator"/>
-    <addaction name="actionAboutKLA"/>
-    <addaction name="actionAboutQt"/>
-   </widget>
-   <addaction name="menuLayout"/>
-   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionCreate">
-   <property name="icon">
-    <iconset resource="../Images.qrc">
-     <normaloff>:/images/Images/document-new.png</normaloff>:/images/Images/document-new.png</iconset>
-   </property>
-   <property name="text">
-    <string>Create</string>
-   </property>
-  </action>
-  <action name="actionQuit">
-   <property name="icon">
-    <iconset resource="../Images.qrc">
-     <normaloff>:/images/Images/system-log-out.png</normaloff>:/images/Images/system-log-out.png</iconset>
-   </property>
-   <property name="text">
-    <string>Quit</string>
-   </property>
-  </action>
-  <action name="actionManual">
-   <property name="icon">
-    <iconset resource="../Images.qrc">
-     <normaloff>:/images/Images/symbol_help.png</normaloff>:/images/Images/symbol_help.png</iconset>
-   </property>
-   <property name="text">
-    <string>Manual</string>
-   </property>
-  </action>
-  <action name="actionAboutKLA">
-   <property name="icon">
-    <iconset resource="../Images.qrc">
-     <normaloff>:/images/Images/symbol_information.png</normaloff>:/images/Images/symbol_information.png</iconset>
-   </property>
-   <property name="text">
-    <string>About KLA</string>
-   </property>
-  </action>
-  <action name="actionAboutQt">
-   <property name="text">
-    <string>About Qt</string>
-   </property>
-  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="../Images.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

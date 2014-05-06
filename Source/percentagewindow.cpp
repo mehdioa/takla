@@ -7,10 +7,12 @@
 #include <QStandardItemModel>
 
 percentageWindow::percentageWindow(QString characters, QTextEdit *text, QWidget *parent) :
-	QDialog(parent), ui(new Ui::percentageWindow),
-    characterSet(characters), textEdit(text->toPlainText().remove(' '))
+	QDialog(parent),
+	ui(new Ui::percentageWindow),
+	characterSet(characters),
+	textEdit(text->toPlainText().remove(' '))
 {
-    ui->setupUi(this);
+	ui->setupUi(this);
 	alphabetSize = characterSet.length();
 	setTotalCharacters();
 	setTotalBigrams();

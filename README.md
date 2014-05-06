@@ -1,4 +1,4 @@
-kla
+takla
 ===
 
-Keyboard Layout Analyzer
+Text And Keyboard Layout Analyzer

@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 	MainWindow mainWindow;
 	mainWindow.show();
 	mainWindow.setWindowTitle("Text And Keyboard Layout Analyzer");
-	mainWindow.setWindowIcon(QIcon("://images/Images/tkla.png"));
+	mainWindow.setWindowIcon(QIcon("://Images/takla128.png"));
 
 	return app.exec();
 }

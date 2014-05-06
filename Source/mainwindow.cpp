@@ -24,7 +24,6 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(ui->loadPushButton, SIGNAL(clicked()), this, SLOT(loadText()));
 	connect(ui->analyzePushButton, SIGNAL(clicked()), this, SLOT(analyzeText()));
 	connect(ui->comparePushButton, SIGNAL(clicked()), this, SLOT(compareLayouts()));
-	connect(ui->actionQuit,SIGNAL(triggered()), this, SLOT(close()));
 
 	readSettings();
 
