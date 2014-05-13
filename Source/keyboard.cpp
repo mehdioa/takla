@@ -4,33 +4,34 @@
 #include <QDebug>
 #include <QTextStream>
 #include <QTextEdit>
-#include <QMessageBox>
 #include <cmath>
 
+const double Keyboard::keysDistance = 0.019;
 
-Keyboard::Keyboard(QString layoutFileName, KeyboardConstants *k_c):
+Keyboard::Keyboard(QString layoutFileName, KeyboardConstants *k_c, QObject *parent):
+	QObject(parent),
+	deleteMe(false),
 	kc(k_c)
 {
 
 	QFile file(layoutFileName);
 	if (!file.open(QFile::ReadOnly |  QFile::Text))
 	{
-		qDebug() << "The file "
-					<< layoutFileName
-					<<" can not be opened. Now Quiting.";
 		return;
 	}
-	QTextStream in(&file);
-
-
-
-	name = in.readLine();
-	in.readLine();//Read of the short alphabet
-	in.readLine();//Read of the qwerty helper
+	QTextStream klt_file(&file);
+	name = klt_file.readLine();
+	klt_file.readLine();//Read of the short alphabet
+	klt_file.readLine();//Read of the qwerty helper
 
 	alphabet = "";
-	QString normal_characters = in.readLine().remove(' ');
-	QString shifted_characters = in.readLine().remove(' ');
+	QString normal_characters = klt_file.readLine().remove(' ');
+	QString shifted_characters = klt_file.readLine().remove(' ');
+	if (normal_characters.length() != kc->LayouSize || shifted_characters.length() != kc->LayouSize){
+		qDebug() << "One of the keyboard files are corrupted.";
+		deleteMe = true;
+		return;
+	}
 	Key reading_key;
 	for(int i=0; i < kc->LayouSize; i++){
 		reading_key.row = kc->KeySpec[i][0];
@@ -60,13 +61,20 @@ Keyboard::Keyboard(QString layoutFileName, KeyboardConstants *k_c):
 	alphabet.append(reading_key.character);
 
 	reading_key.finger = 9;
-	if(kc->_type == KeyboardType::ISO){
+	reading_key.parallelMove = 2;
+	if(kc->_type == KeyboardType::ISO && kc->_shape != KeyboardShape::MATRIX){
 		reading_key.parallelMove = 3;
-	} else {
-		reading_key.parallelMove = 2;
+	}
+	if (kc->_shape == KeyboardShape::MATRIX){
+		if (kc->isRightHanded){
+			reading_key.finger = 6;
+			reading_key.parallelMove = -2;
+		} else {
+			reading_key.finger = 3;
+		}
 	}
 	reading_key.distanceToHome = getDistanceToHome(reading_key.row, reading_key.parallelMove);
-	reading_key.character = QChar(0x000d);
+	reading_key.character = QChar(0x000a);//return key
 	keyboard.append(reading_key);
 	alphabet.append(reading_key.character);
 }
@@ -75,9 +83,9 @@ Keyboard::Keyboard(QString layoutFileName, KeyboardConstants *k_c):
 double Keyboard::getDistanceToHome(const int row, const int parallelMove)
 //Compute the distance to home without considering shift.
 {
-	double x, y = row*0.019;
+	double x, y = row*keysDistance;
 
-	x = parallelMove*0.019 +kc->horizontalShift[row + 1];
+	x = parallelMove*keysDistance +kc->horizontalShift[row + 1];
 
 	return sqrt(x*x + y*y);
 }
@@ -86,7 +94,7 @@ void Keyboard::procesText(QTextEdit *text)
 {
 	Key previousKey = keyboard.at(alphabet.indexOf(' '));
 	Key currentKey;
-    QString simplifiedText = text->toPlainText();
+	QString simplifiedText = text->toPlainText();
 	foreach (QChar ch, simplifiedText)
 	{
 		if (!alphabet.contains(ch))
@@ -112,7 +120,7 @@ void Keyboard::procesText(QTextEdit *text)
     changeToPercentage(sameHandHits);
 }
 
-void Keyboard::changeToPercentage(double (&ar)[13])
+void Keyboard::changeToPercentage(double *ar)
 {
 	for (int i = 0; i < 4; ++i)
 	{
@@ -130,7 +138,7 @@ void Keyboard::changeToPercentage(double (&ar)[13])
 	}
 }
 
-void Keyboard::computeDistances(const Key *prevKey, const Key *curKey)
+void Keyboard::computeDistances(Key *prevKey, Key *curKey)
 {
     //We use -1 and 1 for left hand and right hand
 	int previousHand = 0;
@@ -203,22 +211,22 @@ void Keyboard::computeDistances(const Key *prevKey, const Key *curKey)
 }
 
 
-double Keyboard::goToKey(const Key *fromKey, const Key *toKey)
+double Keyboard::goToKey(Key *fromKey, Key *toKey)
 {
 	double x1, y1;//coordinates of the fromKey from corresponding finger home key in meter
 	double x2, y2;//coordinates of the toKey from corresponding finger home key in meter
 
-	y1 = fromKey->row*0.019;
-	y2 = toKey->row*0.019;
+	y1 = fromKey->row*keysDistance;
+	y2 = toKey->row*keysDistance;
 
-	x1 = fromKey->parallelMove*0.019 + kc->horizontalShift[fromKey->row + 1];
-	x2 = toKey->parallelMove*0.019 + kc->horizontalShift[toKey->row + 1];
+	x1 = fromKey->parallelMove*keysDistance + kc->horizontalShift[fromKey->row + 1];
+	x2 = toKey->parallelMove*keysDistance + kc->horizontalShift[toKey->row + 1];
 
 	return sqrt(pow(x2-x1,2)+pow(y2-y1,2));
 }
 
 
-void Keyboard::addShiftSpace(const Key *key)
+void Keyboard::addShiftSpace(Key *key)
 {
 	if (key->finger < 4)
 	{

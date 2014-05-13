@@ -18,13 +18,12 @@ class CompareDialog : public QDialog
 public:
 	explicit CompareDialog(QTextEdit *text, QStringList *layoutsListPointer, KeyboardConstants k_c,  QWidget *parent = 0);
 	~CompareDialog();
-	
+
 private:
 	Ui::CompareDialog *ui;
-	QTextEdit *textEdit;
 	KeyboardConstants kc;
 
-	QList<Keyboard> keyboardList;
+	QList<Keyboard *> keyboardList;
 	void evaluate (QString str);
 };
 

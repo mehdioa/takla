@@ -12,6 +12,12 @@ QMAKE_CXXFLAGS += -std=c++0x
 
 TEMPLATE = app
 
+unix: !macx {
+	TARGET = takla
+} else {
+	TARGET = Takla
+}
+
 MOC_DIR = build
 OBJECTS_DIR = build
 RCC_DIR = build
@@ -48,6 +54,7 @@ unix:!macx { # installation on Unix-ish platforms
 	isEmpty(DATA_DIR):DATA_DIR = $$INSTALL_PREFIX/share
 	isEmpty(ICON_DIR):ICON_DIR = $$DATA_DIR/pixmaps
 	isEmpty(DESKTOP_DIR):DESKTOP_DIR = $$DATA_DIR/applications
+	isEmpty(LAYOUTS_DIR):LAYOUTS_DIR = $$DATA_DIR/takla/layout
 #	isEmpty(TRANSLATIONS_DIR):TRANSLATIONS_DIR = $$DATA_DIR/takla/translations
 
 	target.path = $$BIN_DIR
@@ -55,8 +62,8 @@ unix:!macx { # installation on Unix-ish platforms
 	icon.path = $$ICON_DIR
 	desktop.files = takla.desktop
 	desktop.path = $$DESKTOP_DIR
-#	qm.files = translations/*.qm
-#	qm.path = $$TRANSLATIONS_DIR
+	layouts.files = Layouts/*.klt
+	layouts.path = $$LAYOUTS_DIR
 
-	INSTALLS = target icon desktop
+	INSTALLS += target icon desktop layouts
 }

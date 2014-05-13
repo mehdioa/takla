@@ -181,11 +181,11 @@ void MainWindow::compareLayouts()
 		layoutList.append(ui->layoutsListWidget->item(i)->whatsThis());
 	}
 
-	KeyboardConstants kc( (KeyboardType) ui->standardRadioButton->isEnabled(), (KeyboardShape) ui->AnsiRadioButton->isEnabled());
+	KeyboardConstants kc( (KeyboardType) ui->standardRadioButton->isEnabled(), (KeyboardShape) ui->AnsiRadioButton->isEnabled(), ui->rightRadioButton->isChecked());
 	auto cw = new CompareDialog(ui->textEdit, &layoutList, kc, this);
 	cw->setWindowTitle("Compares");
 	cw->show();
-	statusBar()->showMessage(tr("Layout compared"), 2000);
+	statusBar()->showMessage(tr("Layouts compared"), 2000);
 
 }
 

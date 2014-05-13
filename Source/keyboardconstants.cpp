@@ -1,11 +1,12 @@
 #include "keyboardconstants.h"
 
-KeyboardConstants::KeyboardConstants(const KeyboardType &kt, const KeyboardShape &ks):
+KeyboardConstants::KeyboardConstants(const KeyboardType &kt, const KeyboardShape &ks, const bool &hand):
 	_type(kt),
-	_shape(ks)
+	_shape(ks),
+	isRightHanded(hand)
 {
 	if (_type == KeyboardType::ISO) {
-		leftShiftDistance = 0.038;
+		leftShiftDistance = 2*0.019;
 		KeySpec = ISOspec;
 		LayouSize = 48;
 	} else {
@@ -23,8 +24,8 @@ KeyboardConstants::KeyboardConstants(const KeyboardType &kt, const KeyboardShape
 		horizontalShift[3] = -0.014;
 
 	} else {
-		rightShiftDistance = 0.027;
-		leftShiftDistance = 0.027;
+		rightShiftDistance = 0.038;
+		leftShiftDistance = 0.019;
 		horizontalShift[0] = 0.0;
 		horizontalShift[1] = 0.0;
 		horizontalShift[2] = 0.0;

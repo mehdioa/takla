@@ -16,7 +16,8 @@ class KeyboardConstants
 public:
 	KeyboardType _type;
 	KeyboardShape _shape;
-	KeyboardConstants(const KeyboardType &kt, const KeyboardShape &ks);
+	bool isRightHanded;
+	KeyboardConstants(const KeyboardType &kt, const KeyboardShape &ks, const bool &hand);
 
 	double rightShiftDistance;
 	double leftShiftDistance;

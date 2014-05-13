@@ -1,7 +1,7 @@
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
 
-
+#include <QObject>
 #include <QString>
 #include <QVector>
 #include "keyboardconstants.h"
@@ -18,15 +18,16 @@ struct Key{
 };
 
 
-class Keyboard
+class Keyboard : public QObject
 {
-
+	Q_OBJECT
 public:
-	Keyboard(QString layoutFileName, KeyboardConstants *k_c);
+	explicit Keyboard(QString layoutFileName, KeyboardConstants *k_c, QObject *parent=0);
 	void procesText(QTextEdit *text);
 
 	QString name;
-    double inwardRollingHits [13] = {0.0};
+	bool deleteMe;
+	double inwardRollingHits [13] = {0.0};
     double outwardRollingHits [13] = {0.0};
     double sameFingerHits [13] = {0.0};
     double handSymmetry [13] = {0.0};
@@ -39,17 +40,15 @@ private:
 	QVector<Key> keyboard;
 	QString alphabet;
 	KeyboardConstants *kc;
+	static const double keysDistance;
 
-	void computeDistances (const Key* prevKey, const Key* curKey);
-	double goToKey (const Key* fromKey, const Key* toKey);
+	void computeDistances (Key* prevKey, Key* curKey);
+	double goToKey (Key* fromKey, Key* toKey);
 	double getDistanceToHome(const int row, const int parallelMove);
-	void addShiftSpace(const Key* key);
-	void changeToPercentage(double (&ar)[13]);
-//	double rightShiftDistance = 0.034;//in standard keyboard
-//	double leftShiftDistance = 0.021;//in standard and ANSI keyboard
-//	double horizontalShift [4] = {0.009, 0.0, -0.004, -0.014};//Horizontal shift of the rows -1, 0, 1, 2 in standard keyboard
+	void addShiftSpace(Key* key);
+	void changeToPercentage(double *ar);
 
-	int pinkyIndex (const int hand) {return (hand > 0) ? 9 : 0;}
+	int pinkyIndex (const int &hand) const {return (hand > 0) ? 9 : 0;}
 
 };
 
