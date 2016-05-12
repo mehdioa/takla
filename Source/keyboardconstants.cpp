@@ -6,11 +6,11 @@ KeyboardConstants::KeyboardConstants(const KeyboardType &kt, const KeyboardShape
 	isRightHanded(hand)
 {
 	if (_type == KeyboardType::ISO) {
-		leftShiftDistance = 2*0.019;
+//		leftShiftDistance = 2*0.019;
 		KeySpec = ISOspec;
 		LayouSize = 48;
 	} else {
-		leftShiftDistance = 0.021;
+//		leftShiftDistance = 0.021;
 		KeySpec = ANSIspec;
 		LayouSize = 47;
 	}

@@ -14,11 +14,14 @@ enum class KeyboardShape{
 class KeyboardConstants
 {
 public:
+	friend class Keyboard;
+
+	KeyboardConstants(const KeyboardType &kt, const KeyboardShape &ks, const bool &hand);
+
+private:
 	KeyboardType _type;
 	KeyboardShape _shape;
 	bool isRightHanded;
-	KeyboardConstants(const KeyboardType &kt, const KeyboardShape &ks, const bool &hand);
-
 	double rightShiftDistance;
 	double leftShiftDistance;
 	double horizontalShift [4];
